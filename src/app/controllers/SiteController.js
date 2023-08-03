@@ -1,21 +1,14 @@
 const Course = require('../models/Course');
+const {convertArray}= require('../../util/convert');
 
 class SiteController{
     //[GET] /
-    async index(req, res) {
-        res.render('home');
-        // let data={};
-        // try {
-        //     data = await Course.find({})
-        // } catch (error) {
-        //     console.log("Lấy dữ liệu bị lỗi");
-        // }
-        res.json(await Course.find({}));
-    //     Course.find().then((courses, err) => {
-    //         res.json(courses);
-    //    });
+    index(req, res,next) {
+        Course.find({}).then((courses, err) => {
+            res.render('home',{courses:convertArray(courses)});
+       })
+       .catch(err=>next(err));
 
-        // res.render('home');
     }
      //[GET] /search
     search(req,res){

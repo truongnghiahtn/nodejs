@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const handlebars = require("express-handlebars");
 const db = require("./config/db");
+const methodOverride = require('method-override');
 
 // Connect to DB
 db.connect();
@@ -14,6 +15,18 @@ const route = require("./routes");
 // config file static
 
 app.use(express.static(path.join(__dirname, "public")));
+
+// phan giai post
+
+app.use(express.urlencoded({
+  extended: true
+}));
+app.use(express.json());
+
+
+// custom method
+app.use(methodOverride('_method'));
+
 
 // HTTP logger
 app.use(morgan("combined"));
