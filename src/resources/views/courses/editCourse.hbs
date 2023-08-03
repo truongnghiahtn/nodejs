@@ -1,13 +1,14 @@
 <div class="warap m-4">
-  <h2> Tạo khóa học  </h2>
+  <h2> Cập nhật khóa học </h2>
   <div class="Page-Create p-4">
-    <form method="POST" action="/course/store">
+    <form method="POST" action="/course/update/{{course._id}}?_method=PUT">
       <div class="form-group">
         <label for="name">Tên khóa học</label>
         <input
           type="text"
           class="form-control"
           name="name"
+          value={{course.name}}
           placeholder="Nhập tên khóa học"
         />
       </div>
@@ -17,6 +18,7 @@
           type="text"
           class="form-control"
           name="description"
+          value={{course.description}}
           placeholder="Nhập mô tả"
         />
       </div>
@@ -26,10 +28,11 @@
           type="text"
           class="form-control"
           name="video"
+          value={{course.video}}
           placeholder="Nhập video"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <button type="submit" class="btn btn-primary">Cập nhật</button>
     </form>
   </div>
 
